@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    stages {
+        stage('Test') {
+            steps {
+                sh './gradlew check'
+            }
+        }
+    }
+     post { //post section of a Pipeline is guaranteed to run at the end of a Pipeline’s execution
+        always {
+            junit 'build/reports/**/*.xml' //junit Detailed pass/fail info per test
+        }
+    }
+}

@@ -1,15 +1,17 @@
 pipeline {
     agent any
     stages {
-        stage('Test') {
+        stage('Lists-show') {
             steps {
-                sh './gradlew check'
+                sh 'ls'
             }
         }
     }
      post {
-        always {
-            junit 'build/reports/**/*.xml' //junit Detailed pass/fail info per test
+        success {
+            mail to: 'nagaveninayakn@gmail.com',
+            subject: "Sucess showing the list:  ${currentBuild.fullDisplayName}"
+            body: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
         }
     }
 }
