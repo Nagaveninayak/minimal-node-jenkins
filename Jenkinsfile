@@ -9,12 +9,13 @@ pipeline {
 
     stages {
         stage('build') {
+            environment {
+                PROJECT_NAME = 'MINIMAL_NODE_JENKINS'
+            }
             steps {
-                environment {
-                    PROJECT_NAME = 'MINIMAL_NODE_JENKINS'
-                }
                 echo "PACKAGE NAME is ${PACKAGE_NAME}"
                 echo "PACKAGE NAME is ${PROJECT_NAME}"
+                sh 'printenv'
             }
         }
     }
