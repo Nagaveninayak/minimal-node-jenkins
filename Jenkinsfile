@@ -10,8 +10,8 @@ pipeline {
      post {
         success {
             mail to: 'nagaveninayakn@gmail.com',
-            subject: "Sucess showing the list:  ${currentBuild.fullDisplayName}"
-            body: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
+                subject: "Sucess showing the list:  ${currentBuild.fullDisplayName}",
+                body: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
         }
     }
 }
