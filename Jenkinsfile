@@ -1,17 +1,24 @@
 pipeline {
     agent any
     stages {
-        stage('Lists-show') {
+        /* "Build" and "Test" stages omitted */
+
+        stage('Deploy - Staging') {
             steps {
-                sh 'ls'
+                echo 'Deploying!!'
             }
         }
-    }
-     post {
-        success {
-            mail to: 'nagaveninayakn@gmail.com',
-                subject: "Sucess showing the list:  ${currentBuild.fullDisplayName}",
-                body: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
+
+        stage('Sanity check') {
+            steps {
+                input "Does the staging environment look ok?"
+            }
+        }
+
+        stage('Deploy - Production') {
+            steps {
+               echo 'Deployed after staging'
+            }
         }
     }
 }
