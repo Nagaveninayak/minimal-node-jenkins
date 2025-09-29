@@ -1,0 +1,22 @@
+pipeline {
+    agent {
+        label 'linux'
+    }
+
+    environment {
+        PACKAGE_NAME = 'node'
+    }
+
+    stages {
+        stage('build') {
+            environment {
+                PROJECT_NAME = 'MINIMAL_NODE_JENKINS'
+            }
+            steps {
+                echo "PACKAGE NAME is ${PACKAGE_NAME}"
+                echo "PACKAGE NAME is ${PROJECT_NAME}"
+                sh 'printenv' //shows all the envs
+            }
+        }
+    }
+}

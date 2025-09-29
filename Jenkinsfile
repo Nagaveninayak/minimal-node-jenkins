@@ -1,22 +1,15 @@
 pipeline {
-    agent {
-        label 'linux'
-    }
-
-    environment {
-        PACKAGE_NAME = 'node'
-    }
-
+    agent any
     stages {
-        stage('build') {
-            environment {
-                PROJECT_NAME = 'MINIMAL_NODE_JENKINS'
-            }
+        stage('Test') {
             steps {
-                echo "PACKAGE NAME is ${PACKAGE_NAME}"
-                echo "PACKAGE NAME is ${PROJECT_NAME}"
-                sh 'printenv'
+                sh './gradlew check'
             }
+        }
+    }
+     post {
+        always {
+            junit 'build/reports/**/*.xml' //junit Detailed pass/fail info per test
         }
     }
 }
