@@ -1,15 +1,9 @@
 pipeline {
-    agent any  // Use any agent since we'll manage Docker inside the steps
+    agent any
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
-                script {
-                    // Run Node inside a Docker container
-                    docker.image('node:22.20.0-alpine3.22').inside('-v /tmp:/tmp') {
-                        sh 'echo "Running inside Node container"'
-                        sh 'node --version'
-                    }
-                }
+                echo 'Hello, this is a simple Jenkins pipeline!'
             }
         }
     }
