@@ -3,7 +3,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Hello, this is a simple Jenkins pipeline!'
+               sh 'echo "Hello World"'
+                sh '''
+                    echo "Multiline shell steps works too"
+                    ls -lah
+                '''
             }
         }
     }
